@@ -1,7 +1,9 @@
 package View;
 
 import Contoller.StudentController;
+import DAO.StudentDAO;
 import Entity.Student;
+import Service.StudentService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+//The view package contains classes that handle the presentation logic
+// of the application. Views are responsible for rendering user interface
+// components and receiving user input.
 public class StudentView extends JFrame {
     private JTextField txtId;
     private JTextField txtName;
@@ -68,7 +73,8 @@ public class StudentView extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         add(formPanel, BorderLayout.SOUTH);
 
-        this.studentController = new StudentController();
+        StudentService studentService = new StudentService(new StudentDAO());
+        this.studentController = new StudentController(studentService);
         populateTable();
 
         btnAdd.addActionListener(new ActionListener() {

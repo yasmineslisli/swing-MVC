@@ -5,7 +5,11 @@ import Entity.Student;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+//The DAO package contains classes that are responsible for data storage
+// and retrieval. The DAO provides a layer of abstraction
+// between the application and the database, allowing the
+// application to access data without being tied to a
+// specific database implementation.
 public class StudentDAO {
 //DAO for database
     private static final String DB_USER = "root";
@@ -49,7 +53,7 @@ public class StudentDAO {
         }
     }
 
-    public static List<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/swing", DB_USER, DB_PASSWORD)) {
@@ -70,6 +74,27 @@ public class StudentDAO {
         }
 
         return students;
+    }
+
+    public Student getStudentById(int id) {
+        Student student = new Student();
+
+        try {Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/swing", DB_USER, DB_PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM student WHERE id=?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                student.setId(resultSet.getInt("id"));
+                student.setName(resultSet.getString("name"));
+                student.setEmail(resultSet.getString("email"));
+                student.setPhone(resultSet.getString("phone"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return student;
     }
 
 }

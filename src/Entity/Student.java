@@ -1,5 +1,9 @@
 package Entity;
 
+//The entity package contains classes that represent the data model
+// in the application. Entities are often annotated
+// with JPA annotations to define their relationships and
+// mappings to the database.
 public class Student {
     private int id;
     private String name;

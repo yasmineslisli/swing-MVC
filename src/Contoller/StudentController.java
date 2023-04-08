@@ -3,18 +3,28 @@ package Contoller;
 import Entity.Student;
 import Service.StudentService;
 import DAO.StudentDAO;
+import View.StudentView;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//The controller package contains classes that handle user
+// input and interact with the model and view components.
+// The controller's primary responsibility is to control the
+// flow of the application by receiving user input and
+// invoking appropriate actions on the model or view
+// components.
 public class StudentController {
     private StudentService studentService;
+    private StudentView studentView;
     private List<Student> students;
 
-    public StudentController() throws SQLException {
-        studentService = new StudentService();
-        students = studentService.getAllStudents();
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+        students = new ArrayList<>();
     }
+
 
     public void addStudent(String name, String email, String phone) {
         Student student = new Student();
@@ -44,7 +54,7 @@ public class StudentController {
         List<Student> students = new ArrayList<>();
 
         try {
-            students = StudentDAO.getAllStudents();
+            students = StudentService.getAllStudents();
         } catch (Exception e) {
             e.printStackTrace();
         }
