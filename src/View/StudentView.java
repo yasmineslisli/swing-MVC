@@ -13,9 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
-//The view package contains classes that handle the presentation logic
-// of the application. Views are responsible for rendering user interface
-// components and receiving user input.
+
 public class StudentView extends JFrame {
     private JTextField txtId;
     private JTextField txtName;
@@ -56,7 +54,9 @@ public class StudentView extends JFrame {
         tblStudents = new JTable(tblModel);
         JScrollPane scrollPane = new JScrollPane(tblStudents);
 
-        JPanel formPanel = new JPanel(new GridLayout(5, 2));
+        JPanel formPanel = new JPanel(new GridLayout(6, 2));
+
+
         formPanel.add(lblId);
         formPanel.add(txtId);
         formPanel.add(lblName);

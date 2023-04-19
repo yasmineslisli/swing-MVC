@@ -1,6 +1,7 @@
 import Contoller.StudentController;
 import DAO.StudentDAO;
 import Service.StudentService;
+import View.Student1View;
 import View.StudentView;
 
 import java.sql.SQLException;
@@ -17,6 +18,8 @@ public class Main {
         // create view object
         StudentView studentView = new StudentView(studentController);
         studentView.start();
+        Student1View student1View = new Student1View();
+        student1View.start();
     }
 
 
